@@ -1,5 +1,8 @@
 import { View, Text, FlatList } from 'react-native';
 import { MealCard } from './MealCard';
+import { DateSwitcher } from './DateSwitcher';
+import { DailyStats } from './DailyStats';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const meals = [
     {
@@ -20,34 +23,63 @@ const meals = [
     },
 ];
 
-function MealsListHeader(){
-    return(
-        <>
-            
-        </>
+function MealsListHeader() {
+    return (
+        <View className="flex-1">
+            <DateSwitcher />
+
+            <View className="mt-2">
+                <DailyStats
+                    calories={{
+                        current: 500,
+                        goal: 2500,
+                    }}
+                    proteins={{
+                        current: 500,
+                        goal: 2500,
+                    }}
+                    carbohydrates={{
+                        current: 500,
+                        goal: 2500,
+                    }}
+                    fats={{
+                        current: 500,
+                        goal: 2500,
+                    }}
+                />
+            </View>
+
+            <View className="h-px bg-gray-200 mt-7" />
+
+            <Text className="text-black-700 m-5 text-base font-sans-medium tracking-[1.28px]">
+                REFEIÇÕES
+            </Text>
+        </View>
+
     )
 }
 
-export function MealsList() {
-    return (
-        <View className="p-5 flex-1">
-            <Text className="text-black-700 text-base font-sans-medium tracking-[1.28px]">
-                REFEIÇÕES
-            </Text>
 
-            <View className="mt-4 flex-1">
-                <FlatList 
-                    data={meals}
-                    contentContainerClassName="gap-8"
-                    keyExtractor={meal => meal.id}
-                    renderItem={({item: meal}) => (
-                        <MealCard 
-                            id={meal.id}
-                            name={meal.name}
-                        />
-                     )}
-                />
-            </View>
-        </View>
+export function MealsList() {
+    const { bottom } = useSafeAreaInsets();
+
+    return (
+
+        <FlatList
+            contentContainerStyle={{ paddingBottom: 80 + bottom + 16}}
+            data={meals}
+            contentContainerClassName="gap-8 px-5"
+            ListHeaderComponent={<MealsListHeader />}
+            keyExtractor={meal => meal.id}
+            renderItem={({ item: meal }) => (
+                <View className="mx-5">
+                    <MealCard
+                        id={meal.id}
+                        name={meal.name}
+                    />
+                </View>
+
+            )}
+        />
     )
 }
