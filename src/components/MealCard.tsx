@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import { TouchableOpacity, Text, View} from "react-native";
 
 interface ImealCardProps {
@@ -7,7 +8,8 @@ interface ImealCardProps {
 
 export function MealCard({ id, name }:ImealCardProps) {
     return (
-        <TouchableOpacity>
+        <Link href={`/meals/%{id}`} asChild>
+            <TouchableOpacity>
             <Text className="text-base font-sans-regular text-gray-700">
                 Hoje, 12h25
             </Text>
@@ -22,6 +24,7 @@ export function MealCard({ id, name }:ImealCardProps) {
                     <Text className="text-base font-sans-medium text-black-700">Pão</Text>
                 </View>
             </View>
-        </TouchableOpacity> 
+            </TouchableOpacity> 
+        </Link>
     )
 }
