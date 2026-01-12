@@ -8,7 +8,7 @@ export const signUpSchema = z.object({
   height: z.string().min(1, "Informe sua altura"),
   activityLevel: z.string(),
   name: z.string().min(1, "Informe seu nome"),
-  email: z.string().email("Informe um e-mail válido"),
+  email: z.string("Informe um e-mail válido"),
   password: z.string().min(8, "A senha deve ter pelo menos 8 caracteres"),
 });
 
