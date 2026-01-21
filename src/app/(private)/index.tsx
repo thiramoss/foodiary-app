@@ -1,16 +1,15 @@
-import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
-import { HomeHeader } from "../../components/HomeHeader";
-import { MealsList } from "../../components/MealsList";
-import { CreateMealBottomBar } from "../../components/CreateMealBottomBar";
+import { View } from "react-native";
+import { CreateMealBottomBar } from '../../components/CreateMealBottomBar';
+import { HomeHeader } from '../../components/HomeHeader';
+import { MealsList } from '../../components/MealsList';
 
 export default function Page() {
   return (
     <View className="flex-1 bg-white">
-            <HomeHeader />
-            <MealsList />
+      <HomeHeader />
+      <MealsList />
 
-            <CreateMealBottomBar />
+      <CreateMealBottomBar />
     </View>
   );
 }

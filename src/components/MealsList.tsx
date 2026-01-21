@@ -14,7 +14,6 @@ type Meal = {
   id: string;
   icon: string;
   foods: {
-    id: string;
     name: string;
     quantity: string;
     calories: number;
@@ -62,10 +61,6 @@ function MealsListHeader({
       fats,
     };
   }, [meals]);
-
-   if (!user) {
-    return null;
-  }
 
   return (
     <View>
